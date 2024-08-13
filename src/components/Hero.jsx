@@ -40,7 +40,7 @@ const Hero = () => {
         >
           <Avatar
             alt="my image"
-            src="./myImage1.png"
+            src="./myImage1.jpeg"
             sx={
               !isSmallScreen
                 ? { width: 250, height: 250 }

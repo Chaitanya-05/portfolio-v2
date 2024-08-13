@@ -3,11 +3,32 @@ import { Link } from "react-router-dom";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
+import { ArrowOutward } from "@mui/icons-material";
+import { Button } from "@mui/material";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const downloadAndOpen = (e) => {
+    e.preventDefault(); // Prevent the default anchor behavior
+
+    // Open the PDF in a new tab
+    window.open(
+      "https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing",
+      "_blank",
+    );
+
+    // Trigger the download
+    const downloadLink = document.createElement("a");
+    downloadLink.href =
+      "https://drive.google.com/uc?export=download&id=11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L";
+    downloadLink.download = ""; // Optional: specify a filename
+    document.body.appendChild(downloadLink); // Append the link to the body
+    downloadLink.click(); // Trigger the download
+    document.body.removeChild(downloadLink); // Remove the link after downloading
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +62,6 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          
           <p className="flex cursor-pointer text-[18px] font-bold text-white ">
             Chaitanya &nbsp;
             <span className="hidden sm:block"> | MERN Stack Developer</span>
@@ -60,6 +80,18 @@ const Navbar = () => {
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
+          <li>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing"
+                onClick={downloadAndOpen}
+              >
+                <Button variant="outlined" endIcon={<ArrowOutward />}>
+                  Resume
+                </Button>
+              </a>
+            </li>
         </ul>
 
         <div className="flex flex-1 items-center justify-end sm:hidden">
@@ -94,7 +126,20 @@ const Navbar = () => {
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>
               ))}
+              <div>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing"
+                onClick={downloadAndOpen}
+              >
+                <Button variant="outlined" endIcon={<ArrowOutward />}>
+                  Resume
+                </Button>
+              </a>
+            </div>
             </ul>
+            
           </div>
         </div>
       </div>
