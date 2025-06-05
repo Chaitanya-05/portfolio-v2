@@ -23,7 +23,7 @@ const Navbar = () => {
     // Trigger the download
     const downloadLink = document.createElement("a");
     downloadLink.href =
-      "https://drive.google.com/uc?export=download&id=11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L";
+      "https://drive.google.com/file/d/156QzurQz-0zukU-g8nsmHZ_MBV-uy8Q-/view?usp=sharing";
     downloadLink.download = ""; // Optional: specify a filename
     document.body.appendChild(downloadLink); // Append the link to the body
     downloadLink.click(); // Trigger the download
