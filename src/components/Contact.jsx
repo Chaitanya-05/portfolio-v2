@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
@@ -7,25 +6,23 @@ import { Button } from "@mui/material";
 import { Email, LinkedIn, GitHub, ArrowOutward } from "@mui/icons-material";
 
 const Contact = () => {
-  const downloadAndOpen = (e) => {
-    e.preventDefault(); // Prevent the default anchor behavior
+  const handleResumeDownload = (e) => {
+    e.preventDefault();
 
-    // Open the PDF in a new tab
-    window.open('https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing', '_blank');
+    const downloadUrl =
+      "https://drive.google.com/uc?export=download&id=156QzurQz-0zukU-g8nsmHZ_MBV-uy8Q-";
 
-    // Trigger the download
-    const downloadLink = document.createElement('a');
-    downloadLink.href = 'https://drive.google.com/uc?export=download&id=11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L';
-    downloadLink.download = ''; // Optional: specify a filename
-    document.body.appendChild(downloadLink); // Append the link to the body
-    downloadLink.click(); // Trigger the download
-    document.body.removeChild(downloadLink); // Remove the link after downloading
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.setAttribute("download", "Chaitanya_Resume.pdf");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
-
 
   return (
     <>
-      <div className="flex flex-col-reverse gap-10 overflow-hidden md:mt-12 md:flex-row ">
+      <div className="flex flex-col-reverse gap-10 overflow-hidden md:mt-12 md:flex-row">
         <motion.div
           variants={slideIn("left", "tween", 0.1, 0.5)}
           className="flex-[0.75] rounded-2xl bg-black-100 p-8"
@@ -76,21 +73,19 @@ const Contact = () => {
           />
         </motion.div>
       </div>
+
       <div className="mb-4 ml-5">
-        <h1 className="my-3  text-xl font-semibold text-slate-50">
+        <h1 className="my-3 text-xl font-semibold text-slate-50">
           Thanks for scrolling.
         </h1>
         <div>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing"
-            onClick={downloadAndOpen}
+          <Button
+            variant="outlined"
+            endIcon={<ArrowOutward />}
+            onClick={handleResumeDownload}
           >
-            <Button variant="outlined" endIcon={<ArrowOutward />}>
-              Resume
-            </Button>
-          </a>
+            Resume
+          </Button>
         </div>
       </div>
       <hr className="ml-2" />
