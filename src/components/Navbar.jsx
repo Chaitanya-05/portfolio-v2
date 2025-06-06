@@ -16,7 +16,7 @@ const Navbar = () => {
 
     // Open the PDF in a new tab
     window.open(
-      "https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing",
+      "https://drive.google.com/file/d/156QzurQz-0zukU-g8nsmHZ_MBV-uy8Q-/view?usp=sharing",
       "_blank",
     );
 
