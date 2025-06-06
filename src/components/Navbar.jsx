@@ -12,23 +12,18 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const downloadAndOpen = (e) => {
-    e.preventDefault(); // Prevent the default anchor behavior
+  e.preventDefault();
 
-    // Open the PDF in a new tab
-    window.open(
-      "https://drive.google.com/file/d/156QzurQz-0zukU-g8nsmHZ_MBV-uy8Q-/view?usp=sharing",
-      "_blank",
-    );
+  const downloadUrl = "https://drive.google.com/uc?export=download&id=11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L";
 
-    // Trigger the download
-    const downloadLink = document.createElement("a");
-    downloadLink.href =
-      "https://drive.google.com/file/d/156QzurQz-0zukU-g8nsmHZ_MBV-uy8Q-/view?usp=sharing";
-    downloadLink.download = ""; // Optional: specify a filename
-    document.body.appendChild(downloadLink); // Append the link to the body
-    downloadLink.click(); // Trigger the download
-    document.body.removeChild(downloadLink); // Remove the link after downloading
-  };
+  const downloadLink = document.createElement("a");
+  downloadLink.href = downloadUrl;
+  downloadLink.download = "Chaitanya_Resume.pdf"; // Optional filename
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+};
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,12 +76,7 @@ const Navbar = () => {
             </li>
           ))}
           <li>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing"
-                onClick={downloadAndOpen}
-              >
+              <a onClick={downloadAndOpen}>
                 <Button variant="outlined" endIcon={<ArrowOutward />}>
                   Resume
                 </Button>
