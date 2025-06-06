@@ -1,101 +1,137 @@
-import { motion } from "framer-motion";
-
-import { styles } from "../styles";
-import { SectionWrapper } from "../hoc";
-import { slideIn } from "../utils/motion";
-import { Button } from "@mui/material";
-import { Email, LinkedIn, GitHub, ArrowOutward } from "@mui/icons-material";
+import React, { useState } from "react";
+import {
+  TextField,
+  Button,
+  Grid,
+  Typography,
+  Box,
+  Alert,
+} from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 const Contact = () => {
-  const downloadAndOpen = (e) => {
-    e.preventDefault(); // Prevent the default anchor behavior
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-    // Open the PDF in a new tab
-    window.open('https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing', '_blank');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-    // Trigger the download
-    const downloadLink = document.createElement('a');
-    downloadLink.href = 'https://drive.google.com/uc?export=download&id=11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L';
-    downloadLink.download = ''; // Optional: specify a filename
-    document.body.appendChild(downloadLink); // Append the link to the body
-    downloadLink.click(); // Trigger the download
-    document.body.removeChild(downloadLink); // Remove the link after downloading
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+
+    // Clear alerts on change
+    setError("");
+    setSuccess("");
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { name, email, message } = form;
+
+    if (!name || !email || !message) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    // For now, simulate sending with a mailto link
+    const mailtoLink = `mailto:your-email@example.com?subject=Message from ${name}&body=${encodeURIComponent(
+      message
+    )} (${email})`;
+
+    window.location.href = mailtoLink;
+    setSuccess("Message opened in email client.");
+    setForm({ name: "", email: "", message: "" });
+  };
 
   return (
-    <>
-      <div className="flex flex-col-reverse gap-10 overflow-hidden md:mt-12 md:flex-row ">
-        <motion.div
-          variants={slideIn("left", "tween", 0.1, 0.5)}
-          className="flex-[0.75] rounded-2xl bg-black-100 p-8"
-        >
-          <p className={styles.sectionSubText}>Get in touch</p>
-          <h3 className={styles.sectionHeadText}>Contact.</h3>
-          <div className="flex-center-center mt-8 flex-wrap gap-2">
-            <div>
-              <a href="mailto:cdakhale@gmail.com">
-                <Button variant="outlined" endIcon={<Email />}>
-                  Email
-                </Button>
-              </a>
-            </div>
-            <div>
-              <a
-                href="https://www.linkedin.com/in/chaitanyadakhale/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="outlined" endIcon={<LinkedIn />}>
-                  LinkedIn
-                </Button>
-              </a>
-            </div>
-            <div>
-              <a
-                href="https://github.com/Chaitanya-05"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="outlined" endIcon={<GitHub />}>
-                  GitHub
-                </Button>
-              </a>
-            </div>
-          </div>
-        </motion.div>
+    <Box
+      sx={{
+        p: 4,
+        maxWidth: 600,
+        mx: "auto",
+        backgroundColor: "#1e1e1e",
+        borderRadius: 2,
+        color: "white",
+      }}
+    >
+      <Typography variant="h4" gutterBottom>
+        Contact Me
+      </Typography>
 
-        <motion.div
-          variants={slideIn("right", "tween", 0.1, 0.5)}
-          className="md:h-auto md:flex-1"
-        >
-          <img
-            src="https://mern-rajesh-portfolio.web.app/assets/contact.jpeg"
-            alt="contact-us"
-            className="h-full w-full object-contain"
-          />
-        </motion.div>
-      </div>
-      <div className="mb-4 ml-5">
-        <h1 className="my-3  text-xl font-semibold text-slate-50">
-          Thanks for scrolling.
-        </h1>
-        <div>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing"
-            onClick={downloadAndOpen}
-          >
-            <Button variant="outlined" endIcon={<ArrowOutward />}>
-              Resume
+      {error && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      )}
+      {success && (
+        <Alert severity="success" sx={{ mb: 2 }}>
+          {success}
+        </Alert>
+      )}
+
+      <form onSubmit={handleSubmit}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              name="name"
+              label="Your Name"
+              variant="outlined"
+              value={form.name}
+              onChange={handleChange}
+              InputLabelProps={{ style: { color: "#aaa" } }}
+              InputProps={{ style: { color: "white" } }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              name="email"
+              label="Your Email"
+              type="email"
+              variant="outlined"
+              value={form.email}
+              onChange={handleChange}
+              InputLabelProps={{ style: { color: "#aaa" } }}
+              InputProps={{ style: { color: "white" } }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              name="message"
+              label="Your Message"
+              multiline
+              rows={4}
+              variant="outlined"
+              value={form.message}
+              onChange={handleChange}
+              InputLabelProps={{ style: { color: "#aaa" } }}
+              InputProps={{ style: { color: "white" } }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              variant="contained"
+              endIcon={<SendIcon />}
+              fullWidth
+              sx={{ backgroundColor: "#00bcd4", ":hover": { backgroundColor: "#0097a7" } }}
+            >
+              Send Message
             </Button>
-          </a>
-        </div>
-      </div>
-      <hr className="ml-2" />
-    </>
+          </Grid>
+        </Grid>
+      </form>
+    </Box>
   );
 };
 
-export default SectionWrapper(Contact, "contact");
+export default Contact;
