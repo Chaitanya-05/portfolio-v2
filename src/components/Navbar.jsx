@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { ArrowOutward } from "@mui/icons-material";
@@ -12,39 +11,31 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const downloadAndOpen = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const downloadUrl = "https://drive.google.com/uc?export=download&id=11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L";
+    const downloadUrl = "https://drive.google.com/uc?export=download&id=11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L";
 
-  const downloadLink = document.createElement("a");
-  downloadLink.href = downloadUrl;
-  downloadLink.download = "Chaitanya_Resume.pdf"; // Optional filename
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);
-};
-
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.setAttribute("download", "Chaitanya_Resume.pdf");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(scrollTop > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
-      className={`${
-        styles.paddingX
-      } fixed top-0 z-20 flex w-full items-center py-5 ${
+      className={`${styles.paddingX} fixed top-0 z-20 flex w-full items-center py-5 ${
         scrolled ? "bg-primary" : "bg-transparent"
       }`}
     >
@@ -76,12 +67,10 @@ const Navbar = () => {
             </li>
           ))}
           <li>
-              <a onClick={downloadAndOpen}>
-                <Button variant="outlined" endIcon={<ArrowOutward />}>
-                  Resume
-                </Button>
-              </a>
-            </li>
+            <Button onClick={downloadAndOpen} variant="outlined" endIcon={<ArrowOutward />}>
+              Resume
+            </Button>
+          </li>
         </ul>
 
         <div className="flex flex-1 items-center justify-end sm:hidden">
@@ -116,13 +105,12 @@ const Navbar = () => {
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>
               ))}
-              <div>
-              <Button onClick={downloadAndOpen} variant="outlined" endIcon={<ArrowOutward />}>
+              <li>
+                <Button onClick={downloadAndOpen} variant="outlined" endIcon={<ArrowOutward />}>
                   Resume
                 </Button>
-            </div>
+              </li>
             </ul>
-            
           </div>
         </div>
       </div>
