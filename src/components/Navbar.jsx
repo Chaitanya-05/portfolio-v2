@@ -117,16 +117,9 @@ const Navbar = () => {
                 </li>
               ))}
               <div>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://drive.google.com/file/d/11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L/view?usp=sharing"
-                onClick={downloadAndOpen}
-              >
-                <Button variant="outlined" endIcon={<ArrowOutward />}>
+              <Button onClick={downloadAndOpen} variant="outlined" endIcon={<ArrowOutward />}>
                   Resume
                 </Button>
-              </a>
             </div>
             </ul>
             
