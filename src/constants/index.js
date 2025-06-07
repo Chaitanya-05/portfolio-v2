@@ -1,43 +1,11 @@
-// import {
-//   web,
-//   frontend,
-//   design,
-//   backend,
-//   fullStack,
-//   cloud,
-//   html,
-//   css,
-//   javascript,
-//   reactjs,
-//   formik,
-//   redux,
-//   mui,
-//   tailwind,
-//   scss,
-//   nodejs,
-//   expressjs,
-//   mongodb,
-//   mongoose,
-//   git,
-//   github,
-//   EC2,
-//   S3,
-//   vscode,
-//   ChatGPT,
-//   chrome,
-//   mongodbCompass,
-//   postman,
-//   ubuntu,
-//   Impress,
-//   e_commerce,
-//   proConnectup,
-//   portfolio,
-// } from "../assets";
-
 const navLinks = [
   {
     id: "about",
     title: "About",
+  },
+  {
+    id: "skill",
+    title: "Skill",
   },
   {
     id: "work",
@@ -93,10 +61,6 @@ const technologies = [
     name: "Redux",
     icon: "https://mern-rajesh-portfolio.web.app/assets/tech/redux.png",
   },
-  // {
-  //   name: "Formik",
-  //   icon: "https://rajesh-mern-stack-portfolio-images.s3.ap-south-1.amazonaws.com/assets/tech/formik-icon.png",
-  // },
   {
     name: "Matirial UI",
     icon: "https://mern-rajesh-portfolio.web.app/assets/tech/material-ui.png",
