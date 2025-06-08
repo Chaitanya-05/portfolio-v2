@@ -11,7 +11,7 @@ const Contact = () => {
   const downloadResume = e => {
     e.preventDefault();
     const link = document.createElement('a');
-    link.href = 'https://drive.google.com/uc?export=download&id=156QzurQz-0zukU-g8nsmHZ_MBV-uy8Q-';
+    link.href = 'https://drive.google.com/uc?export=download&id=1jaR47ynfKNUg2WK4p2v_ZZDYFz4Eu3QD';
     link.setAttribute('download','Chaitanya_Resume.pdf');
     document.body.appendChild(link);
     link.click();

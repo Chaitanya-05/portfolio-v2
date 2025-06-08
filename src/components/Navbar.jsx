@@ -22,7 +22,7 @@ const Navbar = () => {
   const handleResume = e => {
     e.preventDefault();
     const link = document.createElement('a');
-    link.href = 'https://drive.google.com/uc?export=download&id=11x4580XAC-T1B6hRk5c6Rbo6WWk9Pt9L';
+    link.href = 'https://drive.google.com/uc?export=download&id=1jaR47ynfKNUg2WK4p2v_ZZDYFz4Eu3QD';
     link.setAttribute('download', 'Chaitanya_Resume.pdf');
     document.body.appendChild(link);
     link.click();
