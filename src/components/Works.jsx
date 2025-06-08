@@ -16,13 +16,13 @@ const ProjectCard = ({ index, name, description, tags, image, alt, source_code_l
             onClick={() => window.open(live_link,'_blank')}
             className="black-gradient flex h-10 w-10 cursor-pointer items-center justify-center rounded-full"
           >
-            <img src="/assets/webLink.png" alt="live" className="h-full w-full object-contain" />
+            <img src="/webLink.png" alt="live" className="h-full w-full object-contain" />
           </div>
           <div
             onClick={() => window.open(source_code_link,'_blank')}
             className="black-gradient flex h-10 w-10 cursor-pointer items-center justify-center rounded-full"
           >
-            <img src="/assets/github.png" alt="code" className="h-3/4 w-3/4 object-contain" />
+            <img src="github.png" alt="code" className="h-3/4 w-3/4 object-contain" />
           </div>
         </div>
       </div>
